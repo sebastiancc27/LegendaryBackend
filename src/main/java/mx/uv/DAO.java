@@ -34,12 +34,11 @@ public class DAO {
     }
 
     // !METODO PARA ACTUALIZAR LOS DATOS DEL USUARIO
-    public static Boolean actualizarUsuario(String correo, String pais, String contrasena, String correoOld) {
+    public static Boolean actualizarUsuario(String correo, String pais, String contrasena) {
         Connection conn = c.getConnection();
         boolean actualizado = false;
         try {
-            PreparedStatement ps = conn.prepareStatement("UPDATE Usuarios SET Correo='" + correo + "', Pais='" + pais
-                    + "', Contrasena='" + contrasena + "' WHERE Correo='" + correoOld + "'");
+            PreparedStatement ps = conn.prepareStatement("UPDATE Usuarios SET Pais='" +pais+ "', Contrasena='" + contrasena + "' WHERE Correo='" + correo + "'");
             ps.executeUpdate();
             actualizado = true;
         } catch (Exception ex) {

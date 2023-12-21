@@ -132,11 +132,10 @@ public class App {
 
         get("/actualizaDatos", (request, response) -> {
             String correo = request.queryParams("correo");
-            String correoOld = request.queryParams(("correoOld"));
             String pais = request.queryParams(("pais"));
             String contrasena = request.queryParams("contrasena");
 
-            boolean resultado = DAO.actualizarUsuario(correo, pais, contrasena, correoOld);
+            boolean resultado = DAO.actualizarUsuario(correo, pais, contrasena);
             JsonObject mensaje = new JsonObject();
             mensaje.addProperty("respuesta", resultado);
             return mensaje;

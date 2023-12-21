@@ -38,7 +38,7 @@ public class DAO {
         Connection conn = c.getConnection();
         boolean actualizado = false;
         try {
-            PreparedStatement ps = conn.prepareStatement("UPDATE Usuarios SET Pais='" +pais+ "', Contrasena='" + contrasena + "' WHERE Correo='" + correo + "'");
+            PreparedStatement ps = conn.prepareStatement("UPDATE Usuarios set Pais='" +pais+ "', Contrasena='" + contrasena + "' WHERE Correo='" + correo + "'");
             ps.executeUpdate();
             actualizado = true;
         } catch (Exception ex) {

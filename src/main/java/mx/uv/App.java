@@ -35,7 +35,7 @@ public class App {
             return "OK";
         });
 
-        before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
+        before((request, response) -> response.header("Access-Control-Allow-Origin", "http://localhost:5173"));
 
         post("/registro", (request, response) -> {
             response.type("application/json");

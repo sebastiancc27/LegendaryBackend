@@ -34,12 +34,18 @@ public class DAO {
     }
 
     // !METODO PARA ACTUALIZAR LOS DATOS DEL USUARIO
-    public static int actualizarUsuario(String correo, String pais, String contrasena) {
+    public static String actualizarUsuario(String correo, String pais, String contrasena) {
         Connection conn = c.getConnection();
         int filas=0;
+        String msj="";
         try {
             PreparedStatement ps = conn.prepareStatement("UPDATE Usuarios set Pais='"+pais+"', Contrasena='"+contrasena+"' WHERE Correo='"+correo+"';");
             filas=ps.executeUpdate();
+            if(filas>0){
+                msj="GG";
+            }else{
+                msj="GGnt";
+            }
         } catch (Exception ex) {
             System.out.println("Error al actualizar los datos del usuario: " + ex.toString());
         }finally {
@@ -49,7 +55,7 @@ public class DAO {
                 System.out.println(e);
             }
         }
-        return filas;
+        return msj;
     }
 
     // !METODO PARA ELIMINAR EL USUARIO

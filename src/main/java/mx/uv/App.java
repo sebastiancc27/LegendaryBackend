@@ -136,7 +136,8 @@ public class App {
             String correo = request.queryParams("correo");
             String pais= request.queryParams("pais");
             String contrasena= request.queryParams("contrasena");
-            int respuesta=DAO.actualizarUsuario(correo, pais, contrasena);
+
+            String respuesta=DAO.actualizarUsuario(correo, pais, contrasena);
             JsonObject mensaje = new JsonObject();
             mensaje.addProperty("filas", respuesta);
             return mensaje;

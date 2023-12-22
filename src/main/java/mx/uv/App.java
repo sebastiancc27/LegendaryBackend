@@ -131,22 +131,14 @@ public class App {
             return gson.toJson(DAO.datosUsuario(correo));
         });
 
-        post("/actualizaDatos", (request, response) -> {
-            String payload=request.body();
-            String mensaje="";
-            UsuarioActualizado usuario =gson.fromJson(payload, UsuarioActualizado.class);
-            boolean respuesta=DAO.actualizarUsuario(usuario.getCorreo(), usuario.getPais(), usuario.getContrasena());
-
-            // JsonObject respuesta2 = new JsonObject();
-            if (respuesta == true) {
-                // respuesta2.addProperty("msj", "Información validada");
-                System.out.println("Usuario correcto");
-                mensaje = "Datos actualizados";
-            } else {
-                System.out.println("Usuario incorrecto");
-                // respuesta2.addProperty("msj", "Información invalida");
-                mensaje = "Error al actualizar los datos";
-            }
+        get("/actualizarPerfil", (request, response) -> {
+            response.type("application/json");
+            String correo = request.queryParams("correo");
+            String pais= request.queryParams("pais");
+            String contrasena= request.queryParams("contrasena");
+            int respuesta=DAO.actualizarUsuario(correo, pais, contrasena);
+            JsonObject mensaje = new JsonObject();
+            mensaje.addProperty("filas", respuesta);
             return mensaje;
         });
 
